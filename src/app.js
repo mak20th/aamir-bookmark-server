@@ -5,6 +5,11 @@ const morgan = require('morgan');
 const cors = require('cors');
 const helmet = require('helmet');
 const { NODE_ENV } = require('./config');
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+const validateBearerToken = require('./validate-bearer-token');
+const errorHandler = require('./error-handler');
+const bookmarksServer = require('./bookmarks/bookmarks-router');
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 const app = myExpress();
 
@@ -17,21 +22,10 @@ app.use(morgan(morganOption));
 app.use(helmet());
 app.use(cors());
 
-
-
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 app.get('/', (req, res) => {
-  res.send('Hello, boilerplate');
+  res.send('Hello, World from Aamir');
 });
 
-app.use(function errorHandler(error, req, res, next) {
-  let response;
-  //if (process.env.NODE_ENV === 'production') {
-  if (NODE_ENV === 'production') {
-    response = { error: { message: 'server error' } };
-  } else {
-    console.error(error);
-    response = { message: error.message, error };
-  }
-  res.status(500).json(response);
-});
-module.exports = app;
+
+
