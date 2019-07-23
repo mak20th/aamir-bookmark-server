@@ -51,7 +51,7 @@ bookmarksRouter
     logger.info(`Bookmark ${newBookmark} has been created :)`);
     res
       .status(201)
-      .location(`http://localhost:8000/bookmarks/${newBookmark.id}`)
+      .location(`http://localhost:${PORT}/bookmarks/${newBookmark.id}`)
       .json(newBookmark);
 
   });
@@ -89,4 +89,4 @@ bookmarksRouter
       .end();
   });
 
-module.exports =  {bookmarksRouter};
+module.exports =  bookmarksRouter; // no curly braces if using default
