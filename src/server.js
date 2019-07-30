@@ -1,4 +1,5 @@
 // this file will start our server on an appopriate port
+require('dotenv').config();
 const myApp = require('./app');
 const { PORT } = require('./config');
 //const PORT = process.env.PORT || 8000;

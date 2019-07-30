@@ -18,10 +18,10 @@ bookmarksRouter
     //implementation logic goes here~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     for(const field of ['title', 'url','rating']){ // if either title, url or rating is not provided throw an error
       if(!req.body[field]){
-        logger.error(`${field} is required YO`);
+        logger.error(`${field} is required`);
         return res
           .status(400)
-          .send(`${field} is required YO`);
+          .send(`${field} is required`);
       }
     }
     const { title, url, desc, rating } = req.body;
@@ -30,13 +30,13 @@ bookmarksRouter
       logger.error(`Invalid rating ${rating} provided`);
       return res
         .status(400)
-        .send('Rating must be a number between 0 and 5 YO');
+        .send('Rating must be a number between 0 and 5');
     }
     if(!isWebUri(url)){ // validate URL to see if format correct 'npm install valid-url'
-      logger.error(`Invalid url ${url} provided YO`);
+      logger.error(`Invalid url ${url} provided`);
       return res
         .status(400)
-        .send('You must provide a valid url YO');
+        .send('You must provide a valid url');
     }
 
     const newBookmark = {
@@ -51,7 +51,7 @@ bookmarksRouter
     logger.info(`Bookmark ${newBookmark} has been created :)`);
     res
       .status(201)
-      .location(`http://localhost:${PORT}/bookmarks/${newBookmark.id}`)
+      .location(`http://localhost:8000/bookmarks/${newBookmark.id}`)
       .json(newBookmark);
 
   });
